@@ -6,17 +6,18 @@
 - Interacting via a webpage 
 - More technical experience
 
-## Policymakers:
+## Policymakers/Advocates:
 - Visualize trends in order to get summary level statistics in order to make broad policy decisions
 - A way to output visualizations
 - Easy drop down menus to change relevant variables (years, citizenship, various demographics)
 - Less technical, make ui very very clear and easy to use
 
-## Advocates
 
 ## Technician/Data Scientist
 
 # Functional Design: 
+
+## Researchers:
 
 - Include drop down boxes for charts so that users can download figures with formatting options
 - Have a separate tab for exporting spreadsheets with options for data format
@@ -27,4 +28,20 @@
 - Allow users to download visualizations:
   - Tables
   - Interactive plots downloaded as still figures
+
+# Component Design
+
+Dataframes:
+- Facilities data
+- Bond data
+- Enforcement data (Encounters, Arrests, Removals)
+- Demographic data
+
+
+Dropdown options:
+- Chart type (map, bar, line, etc.)
+- Time (year, month, day)
+- Geographic levels (aor, state, county)
+- Variables
+
 
