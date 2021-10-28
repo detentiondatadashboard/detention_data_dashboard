@@ -15,3 +15,16 @@
 ## Advocates
 
 ## Technician/Data Scientist
+
+# Functional Design: 
+
+- Include drop down boxes for charts so that users can download figures with formatting options
+- Have a separate tab for exporting spreadsheets with options for data format
+- Allow users to download the data they want:
+  - All the data
+  - Prespecified subsets of the data
+  - Data that you visualized through the interface
+- Allow users to download visualizations:
+  - Tables
+  - Interactive plots downloaded as still figures
+
