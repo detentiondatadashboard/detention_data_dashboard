@@ -34,11 +34,12 @@
   b. Interactive plots downloaded as still figures
 
 ## Policymakers/Advocates:
-
-5. be able to see most popularly created visualizations/charts on the site 
 1. 
 2. 
 3.
+4. 
+5. be able to see most popularly created visualizations/charts on the site 
+
 
 ## Technician/Data Scientist:
 1.
