@@ -35,6 +35,13 @@
 
 ## Policymakers/Advocates:
 
+- be able to see most popularly created visualizations/charts on the site 
+- Include drop down boxes for variables for visualizing tables of data subsets
+- Include drop down boxes for variables so that users can visualize charts
+- Allow users to download visualizations:
+  - Tables
+  - Interactive plots downloaded as still figures
+
 ## Technician/Data Scientist:
 
 # Component Design
