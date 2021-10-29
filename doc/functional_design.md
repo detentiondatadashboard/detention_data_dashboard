@@ -46,11 +46,14 @@
 2.
 3.
 4.
-5. Adding/Removing new data
-6. Adding/Removing new visualization functionality
-7. Changing the language on the website
-8. Handling website traffic
-9. Algorithm for choosing most often created visualizations
+5. 
+6. Adding/Removing new data
+7. Adding/Removing new visualization functionality
+8. Changing the language on the website
+9. Handling website traffic
+10. Algorithm for choosing most often created visualizations
+11. View user statistics/demographics
+12. Email collection of site visitors to update them on site progress (stretch goal)
 
 # Component Design
 
