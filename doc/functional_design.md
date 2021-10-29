@@ -57,6 +57,17 @@
 
 # Component Design
 
+Name: User interface
+What it does: allows users to request tables, charts, and files
+Inputs: drop down options for output format and data selection
+Outputs: files, tables, and charts
+
+Name: Database
+What it does:
+Inputs:
+Outputs:
+
+
 Dataframes/ Database:
 - Facilities data
 - Bond data
