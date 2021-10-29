@@ -76,3 +76,7 @@ Name: Database
 - What it does: it stores spreadsheets and shape files 
 - Inputs: requests from users 
 - Outputs: files, tables, and charts 
+
+## Interaction diagram
+![Diagram]{
+
