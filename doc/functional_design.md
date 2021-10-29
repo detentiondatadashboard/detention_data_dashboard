@@ -57,15 +57,15 @@
 
 # Component Design
 
--Name: User interface
--What it does: allows users to request tables, charts, and files 
--Inputs: drop down options for output format and data selection 
--Outputs: files, tables, and charts 
+- Name: User interface
+- What it does: allows users to request tables, charts, and files 
+- Inputs: drop down options for output format and data selection 
+- Outputs: files, tables, and charts 
 
--Name: Database 
--What it does: it stores spreadsheets and shape files 
--Inputs: requests from users 
--Outputs: files, tables, and charts 
+- Name: Database 
+- What it does: it stores spreadsheets and shape files 
+- Inputs: requests from users 
+- Outputs: files, tables, and charts 
 
 
 
