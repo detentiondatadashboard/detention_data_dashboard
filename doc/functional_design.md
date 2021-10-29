@@ -57,17 +57,23 @@
 
 # Component Design
 
-Dataframes:
+Dataframes/ Database:
 - Facilities data
 - Bond data
 - Enforcement data (Encounters, Arrests, Removals)
 - Demographic data
+- Site user data -contact info, most frequently viewed visualizations
 
+User Interface
+- Dropdown options: 
+  - Visualizations
+    - Chart type (map, bar, line, etc.)
+    - Time (year, month, day)
+    - Geographic levels (aor, state, county)
+    - Variables
+- Plotting Component
+  - input: data from the data base, selected filters from the user
+  - output: a plot/visualization
 
-Dropdown options:
-- Chart type (map, bar, line, etc.)
-- Time (year, month, day)
-- Geographic levels (aor, state, county)
-- Variables
 
 
