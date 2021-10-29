@@ -78,5 +78,6 @@ Name: Database
 - Outputs: files, tables, and charts 
 
 ## Interaction diagram
-![Diagram]{Portal Interaction Diagrams.png}
+![Portal Interaction Diagrams](https://user-images.githubusercontent.com/70054008/139509645-53e18fe0-240a-4fd0-9a70-9710be34779d.png)
+
 
