@@ -23,8 +23,8 @@
 
 ## Researchers:
 
-- Include drop down boxes for charts so that users can download figures with formatting options
-- Have a separate tab for exporting spreadsheets with options for data format
+- Include drop down boxes for variables for visualizing tables of data subsets
+- Include drop down boxes for variables so that users can visualize charts
 - Allow users to download the data they want:
   - All the data
   - Prespecified subsets of the data
