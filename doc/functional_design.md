@@ -32,6 +32,10 @@
   - Tables
   - Interactive plots downloaded as still figures
 
+## Policymakers/Advocates:
+
+## Technician/Data Scientist:
+
 # Component Design
 
 Dataframes:
