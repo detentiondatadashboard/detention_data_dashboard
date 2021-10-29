@@ -13,7 +13,10 @@
 - Less technical, make ui very very clear and easy to use
 
 
-## Technician/Data Scientist
+## Technician/Data Scientist:
+- Add to or edit data that already exists on the portal
+- Add to or edit visualization formatting and displays
+- 
 
 # Functional Design: 
 
