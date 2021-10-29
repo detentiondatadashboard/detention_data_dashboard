@@ -23,26 +23,33 @@
 
 ## Researchers:
 
-- Include drop down boxes for variables for visualizing tables of data subsets
-- Include drop down boxes for variables so that users can visualize charts
-- Allow users to download the data they want:
-  - All the data
-  - Prespecified subsets of the data
-  - Data that you visualized through the interface
-- Allow users to download visualizations:
-  - Tables
-  - Interactive plots downloaded as still figures
+1. Include drop down boxes for variables for visualizing tables of data subsets
+2. Include drop down boxes for variables so that users can visualize charts
+3. Allow users to download the data they want:
+  a. All the data
+  b. Prespecified subsets of the data
+  c. Data that you visualized through the interface
+4. Allow users to download visualizations:
+  a. Tables
+  b. Interactive plots downloaded as still figures
 
 ## Policymakers/Advocates:
 
-- be able to see most popularly created visualizations/charts on the site 
-- Include drop down boxes for variables for visualizing tables of data subsets
-- Include drop down boxes for variables so that users can visualize charts
-- Allow users to download visualizations:
-  - Tables
-  - Interactive plots downloaded as still figures
+5. be able to see most popularly created visualizations/charts on the site 
+1. 
+2. 
+3.
 
 ## Technician/Data Scientist:
+1.
+2.
+3.
+4.
+5. Adding/Removing new data
+6. Adding/Removing new visualization functionality
+7. Changing the language on the website
+8. Handling website traffic
+9. Algorithm for choosing most often created visualizations
 
 # Component Design
 
