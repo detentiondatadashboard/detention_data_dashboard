@@ -10,7 +10,7 @@
 - Visualize trends in order to get summary level statistics in order to make broad policy decisions
 - A way to output visualizations
 - Easy drop down menus to change relevant variables (years, citizenship, various demographics)
-- Less technical, make ui very very clear and easy to use
+- Less technical, make it very very clear and easy to use
 
 
 ## Technician/Data Scientist:
