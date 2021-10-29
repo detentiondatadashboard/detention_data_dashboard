@@ -16,7 +16,7 @@
 ## Technician/Data Scientist:
 - Add to or edit data that already exists on the portal
 - Add to or edit visualization formatting and displays
-- 
+- Add to or edit language on the user interface
 
 # Functional Design: 
 
