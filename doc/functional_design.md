@@ -62,15 +62,20 @@ Name: User interface
 - Inputs: drop down options for output format and data selection 
 - Outputs: files, tables, and charts 
 
-Name: Database 
-- What it does: it stores spreadsheets and shape files 
-- Inputs: requests from users 
-- Outputs: files, tables, and charts 
-
 Name: Download
 - what it does: it produces a file
 - Inputs: type of file and data/charts to include
 - Outputs: file for download
+
+Name: Visualization
+-what it does: produces a table or chart
+-Inputs: data to include and format of chart or table
+-outputs: chart or table
+
+Name: Database 
+- What it does: it stores spreadsheets and shape files 
+- Inputs: requests from users 
+- Outputs: files, tables, and charts 
 
 
 Dataframes/ Database:
