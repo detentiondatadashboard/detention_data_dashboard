@@ -2,37 +2,9 @@ name: test-environment
 channels:
   - defaults
 dependencies:
-  - blas=1.0
-  - ca-certificates=2021.10.26
-  - certifi=2020.6.20
-  - intel-openmp=2021.4.0
-  - libcxx=12.0.0
-  - libedit=3.1.20210910
-  - libffi=3.2.1
-  - libgfortran=3.0.1
-  - mkl=2018.0.3
-  - mkl_fft=1.0.6
-  - mkl_random=1.0.1
-  - ncurses=6.3
   - numpy=1.15.2
-  - numpy-base=1.15.2
-  - openssl=1.0.2u
   - pandas=0.23.4
   - python=3.5.6
-  - python-dateutil=2.8.2
-  - pytz=2021.3
-  - readline=7.0
-  - setuptools=40.2.0
-  - six=1.16.0
-  - sqlite=3.33.0
-  - tbb=2021.4.0
-  - tbb4py=2018.0.5
-  - tk=8.6.11
-  - wheel=0.37.0
-  - xz=5.2.5
-  - zlib=1.2.11
   - pip:
-    - pip==20.3.4
     - plotly==4.14.3
-    - retrying==1.3.3
 prefix: /Users/Maddie/anaconda3/envs/test-environment
