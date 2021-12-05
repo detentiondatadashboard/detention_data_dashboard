@@ -1,0 +1,1 @@
+gunicorn plots.py:server

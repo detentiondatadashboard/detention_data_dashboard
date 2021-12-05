@@ -2,9 +2,14 @@ name: test-environment
 channels:
   - defaults
 dependencies:
+  - notebook
   - numpy
   - pandas
   - dash
+  - brotli
+  - dash-html-components
+  - dash-core-components
   - plotly
+  - gunicorn
   - python=3.9 
 prefix: /Users/Maddie/anaconda3/envs/test-environment
