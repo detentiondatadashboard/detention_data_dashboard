@@ -11,4 +11,5 @@ dependencies:
   - dash-core-components
   - plotly
   - gunicorn
+  - pip-chill
   - python=3.9
