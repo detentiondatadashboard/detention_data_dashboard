@@ -11,5 +11,4 @@ dependencies:
   - dash-core-components
   - plotly
   - gunicorn
-  - python=3.9 
-prefix: /Users/Maddie/anaconda3/envs/test-environment
+  - python=3.9
