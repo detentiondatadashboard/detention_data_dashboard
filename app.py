@@ -12,7 +12,7 @@ candidates = df.winner.unique()
 app = dash.Dash(__name__)
 server = app.server
 
-df_csv = pd.read_csv("./data/ice-facilities.csv")
+df_csv = df
 
 app.layout = html.Div([
     html.P("Candidate:"),
