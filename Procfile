@@ -1,1 +1,1 @@
-gunicorn plots.py:server
+gunicorn plots:server
