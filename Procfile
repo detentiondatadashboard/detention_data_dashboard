@@ -1,1 +1,1 @@
-gunicorn detention_data_dashboard/plots:server
+web: gunicorn app:server
