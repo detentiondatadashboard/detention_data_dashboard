@@ -3,6 +3,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
+import pandas as pd
 
 df = px.data.election()
 geojson = px.data.election_geojson()
@@ -10,6 +11,8 @@ candidates = df.winner.unique()
 
 app = dash.Dash(__name__)
 server = app.server
+
+df_csv = pd.read_csv("./data/ice-facilities.csv")
 
 app.layout = html.Div([
     html.P("Candidate:"),
@@ -21,12 +24,15 @@ app.layout = html.Div([
         labelStyle={'display': 'inline-block'}
     ),
     dcc.Graph(id="choropleth"),
+    html.Button("Download CSV", id="btn_csv"),
+    dcc.Download(id="download-dataframe-csv"),    
 ])
 
 
 @app.callback(
     Output("choropleth", "figure"), 
     [Input("candidate", "value")])
+
 def display_choropleth(candidate):
     fig = px.choropleth(
         df, geojson=geojson, color=candidate,
@@ -36,6 +42,17 @@ def display_choropleth(candidate):
     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
     return fig
+
+
+@app.callback(
+    Output("download-dataframe-csv", "data"),
+    Input("btn_csv", "n_clicks"),
+    prevent_initial_call=True,
+)
+def func(n_clicks):
+    return dcc.send_data_frame(df_csv.to_csv, "mydf.csv")
+
+
 
 
 if __name__ == "__main__":
