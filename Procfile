@@ -1,1 +1,1 @@
-gunicorn plots:server
+gunicorn detention_data_dashboard/plots.ipynb:server
