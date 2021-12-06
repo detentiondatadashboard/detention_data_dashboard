@@ -9,7 +9,7 @@ geojson = px.data.election_geojson()
 candidates = df.winner.unique()
 
 app = dash.Dash(__name__)
-
+server = app.server
 
 app.layout = html.Div([
     html.P("Candidate:"),
