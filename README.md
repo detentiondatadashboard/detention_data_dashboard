@@ -15,8 +15,7 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 ## Software dependencies
 
 - Python3
-- For required python packages, see r<img width="558" alt="Screen Shot 2021-12-07 at 12 23 44 PM" src="https://user-images.githubusercontent.com/32283481/145100878-8ec366b0-eaec-4336-8cdf-d3dee17314dd.png">
-equirements.txt
+- For required python packages, see requirements.txt
 
 ## How to install
 
