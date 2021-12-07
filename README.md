@@ -15,7 +15,8 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 ## Software dependencies
 
 - Python3
-- For required python packages, see requirements.txt
+- For required python packages, see r<img width="558" alt="Screen Shot 2021-12-07 at 12 23 44 PM" src="https://user-images.githubusercontent.com/32283481/145100878-8ec366b0-eaec-4336-8cdf-d3dee17314dd.png">
+equirements.txt
 
 ## How to install
 
@@ -23,26 +24,7 @@ Access the dashboard online here: https://detentiondata.herokuapp.com/
 
 ## Directory structure
 
-```bash
-├── app
-│   ├── css
-│   │   ├── **/*.css
-│   ├── favicon.ico
-│   ├── images
-│   ├── index.html
-│   ├── js
-│   │   ├── **/*.js
-│   └── partials/template
-├── dist (or build)
-├── node_modules
-├── bower_components (if using bower)
-├── test
-├── Gruntfile.js/gulpfile.js
-├── README.md
-├── package.json
-├── bower.json (if using bower)
-└── .gitignore
-```
+<img width="500" alt="Screen Shot 2021-12-07 at 12 23 44 PM" src="https://user-images.githubusercontent.com/32283481/145100930-7c1ae205-0155-4fef-b987-1a24e0ee1899.png">
 
 ## Dash app tutorial
 
