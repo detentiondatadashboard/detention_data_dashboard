@@ -30,6 +30,7 @@ app.layout = html.Div([
     dcc.Download(id="download-dataframe-csv"),    
 ])
 
+app.title="ICE Detention Data Dashboard"
 
 @app.callback(
     Output("choropleth", "figure"), 
