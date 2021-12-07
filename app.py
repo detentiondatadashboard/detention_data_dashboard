@@ -15,6 +15,10 @@ server = app.server
 
 df_csv = df
 
+fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
+
+loc = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
+
 app.layout = html.Div([
     html.P("Candidate:"),
     dcc.RadioItems(
@@ -27,7 +31,15 @@ app.layout = html.Div([
     dcc.Graph(id="choropleth"),
     html.Button("Download CSV", id="btn_csv"),
     dcc.Download(id="download"),
-    html.Button("Download Figure", id="btn_fig")
+    html.Button("Download Figure", id="btn_fig"),
+    dcc.RadioItems(
+        id='us_loc', 
+        options=[{'value': x, 'label': x} 
+                 for x in loc],
+        value=loc[0],
+        labelStyle={'display': 'inline-block'}
+    ),
+    dcc.Graph(id="fy_arrests")
 ])
 
 
@@ -61,6 +73,38 @@ def download(btn_csv, btn_fig):
     else:
         msg = "Click Download!"
         return html.Div(msg)
+
+@app.callback(
+    Output("fy_arrests", "figure"),
+    Input("us_loc", "value")
+)
+
+def display_arrest_fy(us_loc):
+    arrests_by_fy = pd.read_csv("arrests_by_fy.csv")
+    if us_loc == "West Coast":
+        aor = ['LOS', 'SEA',  'SFR', 'SND']
+    elif us_loc == "East Coast":
+        aor = ['ATL', 'BAL', 'BOS', 'BUF', 'DET',  'MIA', 'NEW', 'NOL', 'NYC', 'PHI', 'WAS', 'HQ']
+    elif us_loc == "Midwest":
+        aor = ['CHI', 'SPM']
+    elif us_loc == 'Southwest':
+        aor = ['DAL', 'DEN', 'ELP', 'HOU', 'PHO',  'SLC', 'SNA']
+    elif us_loc == "All":
+        aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
+    else:
+        aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
+
+
+
+    fig = px.line(arrests_by_fy, x=fy, 
+              y=aor, 
+              title = "Arrests in AOR per FY",
+              labels=dict(x="Fiscal Year", y="Number of Arrests"))
+    fig.update_xaxes(title="Fiscal Year", nticks = 4)
+    fig.update_yaxes(title="Number of Arrests")
+    fig.update_layout(legend_title_text='AOR')
+
+    return fig
 
 
 if __name__ == "__main__":
