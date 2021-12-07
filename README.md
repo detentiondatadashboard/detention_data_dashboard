@@ -25,6 +25,4 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 
 ## Dash app tutorial
 
-![image](https://user-images.githubusercontent.com/91341415/145097501-c840c9fd-3dad-460c-8f52-5a8f29d3a5dd.png)
-
 ![image](https://user-images.githubusercontent.com/91341415/145093061-76cfece2-e7af-47e9-b188-31eee1b8c960.png)
