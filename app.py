@@ -10,10 +10,14 @@ df = px.data.election()
 geojson = px.data.election_geojson()
 candidates = df.winner.unique()
 
-app = dash.Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
-df_csv = pd.read_csv("arrests_by_fy.csv")
+app.title = "ICE Detention Data Dashboard"
+
+df_csv = pd.read_csv("./data/arrests_by_fy.csv")
 
 fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
 
