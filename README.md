@@ -22,6 +22,41 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 
 ## Directory structure
 
+detention-data-dashboard/
+├── LICENSE
+├── Procfile
+├── README.md
+├── app.py
+├── data
+│   ├── README.md
+│   ├── arrest_dtypes.yaml
+│   ├── arrests.csv
+│   ├── arrests_by_fy.csv
+│   ├── encounter_dtypes.yaml
+│   ├── encounters.csv
+│   ├── ice-facilities.csv
+│   ├── removal_dtypes.yaml
+│   └── removals.csv
+├── detention_data_dashboard
+│   ├── __init__.py
+│   ├── data_exploration
+│   │   ├── Arrests_descriptive_analysis.ipynb
+│   │   ├── Encounters_Descriptive_Analysis.ipynb
+│   │   ├── Removals_Descriptive_Analysis.ipynb
+│   │   └── maddie_exploration.ipynb
+│   └── tests
+│       ├── __init__.py
+│       └── test_core.py
+├── doc
+│   ├── Tech\ Review\ -\ Web\ Development\ Apps\ for\ Python.txt
+│   ├── Technology\ Review\ -\ Dashboards\ in\ Python.pptx
+│   └── software_design.md
+├── environment.yml
+├── plot_downloads
+│   └── test.png
+├── requirements.txt
+└── runtime.txt
+
 
 ## Dash app tutorial
 
