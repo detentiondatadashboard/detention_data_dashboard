@@ -22,7 +22,7 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 
 ## Directory structure
 
-detention-data-dashboard/
+'''detention-data-dashboard/
 ├── LICENSE
 ├── Procfile
 ├── README.md
@@ -55,7 +55,7 @@ detention-data-dashboard/
 ├── plot_downloads
 │   └── test.png
 ├── requirements.txt
-└── runtime.txt
+└── runtime.txt'''
 
 
 ## Dash app tutorial
