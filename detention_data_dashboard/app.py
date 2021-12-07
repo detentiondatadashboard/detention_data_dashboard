@@ -9,8 +9,12 @@ df = px.data.election()
 geojson = px.data.election_geojson()
 candidates = df.winner.unique()
 
-app = dash.Dash(__name__)
+external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
+
+app.title = "ICE Detention Data Dashboard"
 
 df_csv = df
 
