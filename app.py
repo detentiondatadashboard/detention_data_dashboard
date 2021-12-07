@@ -13,7 +13,7 @@ candidates = df.winner.unique()
 app = dash.Dash(__name__)
 server = app.server
 
-df_csv = df
+df_csv = pd.read_csv("arrests_by_fy.csv")
 
 fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
 
