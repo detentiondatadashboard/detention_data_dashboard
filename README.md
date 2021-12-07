@@ -19,6 +19,7 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 
 ## How to install
 
+Access the dashboard online here: https://detentiondata.herokuapp.com/
 
 ## Directory structure
 
