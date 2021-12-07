@@ -1,0 +1,87 @@
+﻿Web Development Apps for Python
+
+
+
+
+Conclusion: We will use Dash and Heroku because Dash is already based on Flask and can be uploaded with ease to Heroku. 
+
+
+Django
+https://www.djangoproject.com/
+* full-stack web framework
+* Lots of community support
+* Built-in functionality out of the box
+* easy integration with other software and websites
+* Released in 2005
+* Open source, free
+* Supports unittest framework
+* Steeper learning curve
+* Dash in Django: https://thinkinfi.com/integrate-plotly-dash-in-django/ 
+
+
+
+
+Flask
+https://flask.palletsprojects.com/en/2.0.x/
+* light-weight, extensible framework
+* Lots of community support
+* DYI functionality, very flexible
+* Released in 2010
+* Lots of plug ins and extensions
+* Open source, free
+* Supports unittest framework
+* Easier to learn for newbs
+* Dash in Flask: 
+   * https://medium.com/@olegkomarov_77860/how-to-embed-a-dash-app-into-an-existing-flask-app-ea05d7a2210b 
+   * https://hackersandslackers.com/plotly-dash-with-flask/ 
+
+
+Dash in Heroku
+* https://towardsdatascience.com/deploying-your-dash-app-to-heroku-the-magical-guide-39bd6a0c586c 
+* https://medium.com/techfitlab/how-to-create-plotly-dash-app-and-deploy-it-on-heroku-servers-using-youtube-api-with-python-fe03d7eb03f4 
+* https://dash.plotly.com/deployment
+* https://austinlasseter.medium.com/deploy-a-plotly-dash-app-on-heroku-4d2c3224230
+
+
+
+
+Comparisons
+https://testdriven.io/blog/django-vs-flask/ 
+https://www.imaginarycloud.com/blog/flask-vs-django/ 
+https://hackr.io/blog/flask-vs-django
+
+
+
+
+Django
+	Flask
+	Full-stack web framework that follows the batteries-included approach.
+	Light-weight framework with minimalistic features. 
+	Developers already have access to the most common features that makes development faster.
+	Developers can explore and keep control of the core of the application.
+	Django comes with a ready-to-use admin framework that can be customized.
+	Flask doesn’t have any such feature to handle administration tasks.
+	It comes with a built-in template engine that saves a lot of development time.
+	Flask’s template engine Jinja2 is based on Django’s template engine.
+	It allows users to divide a single project into multiple small applications which makes them easy to develop and maintain.
+	Each project can be a single application, however, multiple models and views can be added to the single application. 
+	The Django-admin tool is a built-in bootstrapping tool with which developers can build web applications without any external input.
+	Admin features are not as prominent as in Django.
+	The built-in ORM system enables developers to use any database and perform common DB tasks without having to write long queries.
+	With Flask, developers have to work with different databases by using ORM systems for Python and SQLAlchemy as the SQL toolkit. SQL queries have to be written for common tasks.
+	Django is a production-ready framework.
+	Though some people claim so, Flask is single-threaded and may not perform too well under heavy load. Check out this link to know more.
+	Django is considered to be more popular because it provides many out of box features and reduces time to build complex applications.
+	Flask is a good start if you are getting into web development. There are many websites built on the flask and gain heavy traffic, but not as much compared to the ones in Django.
+	Django is not suitable for projects where requirements change dynamically.
+	With Flask, a simple application can be later changed to add more functionality and make it complex. It provides flexibility to expand the application quickly.
+	Developers can not afford changeless flexibility as the modules provided by Django. 
+	Developers are free to use any plugins and libraries and build functionalities in a flexible way.
+	Django is suited for more significant projects that need much functionality. For more straightforward projects, the features might be an overdose.
+	Flask is a simple, unopinionated framework; it doesn’t decide what your application should look like – developers do.
+	Django is suited for bigger projects that need a lot of functionality. For simpler projects, the features might be an overdose.
+	Simple applications can be built with ease and do not require too much coding. 
+	Django framework ensures developers use best practices as everything has a template.
+	Flask is more open-ended and developers may or may not follow the best practices.
+	For the same functionality, Django needs more than 2 times more lines of code than Flask.
+	Flask application requires much fewer lines of code for a simple task.
