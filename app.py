@@ -19,7 +19,7 @@ app.title = "ICE Detention Data Dashboard"
 
 fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
 
-us_loc = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
+loc = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
 
 app.layout = html.Div(
     children=[
@@ -59,8 +59,8 @@ app.layout = html.Div(
                 dcc.RadioItems(
                     id='us_loc', 
                     options=[{'value': x, 'label': x} 
-                            for x in us_loc],
-                    value=us_loc[0],
+                            for x in loc],
+                    value=loc[0],
                     labelStyle={'display': 'inline-block'}
                 ),
                 html.Div(
