@@ -17,11 +17,9 @@ server = app.server
 
 app.title = "ICE Detention Data Dashboard"
 
-df_csv = pd.read_csv("./data/arrests_by_fy.csv")
-
 fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
 
-loc = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
+us_loc = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
 
 app.layout = html.Div(
     children=[
@@ -39,16 +37,15 @@ app.layout = html.Div(
             ],
             className="header",
         ),
-        html.P("Candidate:"),
-        dcc.RadioItems(
-            id='candidate', 
-            options=[{'value': x, 'label': x} 
-                 for x in candidates],
-            value=candidates[0],
-            labelStyle={'display': 'inline-block'}
-        ),
         html.Div(
             children=[
+                dcc.RadioItems(
+                id='candidate', 
+                options=[{'value': x, 'label': x} 
+                    for x in candidates],
+                value=candidates[0],
+                labelStyle={'display': 'inline-block'}
+                ),
                 html.Div(
                     children=[dcc.Graph(
                         id="choropleth", config={"displayModeBar": False},
@@ -58,6 +55,13 @@ app.layout = html.Div(
                     html.Button("Download Image", id="btn_image"),
                     dcc.Download(id="download-image")],
                     className="card",
+                ),
+                dcc.RadioItems(
+                    id='us_loc', 
+                    options=[{'value': x, 'label': x} 
+                            for x in us_loc],
+                    value=us_loc[0],
+                    labelStyle={'display': 'inline-block'}
                 ),
                 html.Div(
                     children=dcc.Graph(
@@ -92,7 +96,7 @@ def display_choropleth(candidate):
     prevent_initial_call=True,
 )
 def func(n_clicks):
-    return dcc.send_data_frame(df_csv.to_csv, "mydf.csv")
+    return dcc.send_data_frame(df.to_csv, "mydf.csv")
 
 @app.callback(
     Output("download-image", "data"),
@@ -106,8 +110,7 @@ def func(n_clicks):
 
 @app.callback(
     Output("fy_arrests", "figure"),
-    Input("us_loc", "value")
-)
+    [Input("us_loc", "value")])
 
 def display_arrest_fy(us_loc):
     arrests_by_fy = pd.read_csv("./data/arrests_by_fy.csv")
@@ -117,7 +120,7 @@ def display_arrest_fy(us_loc):
         aor = ['ATL', 'BAL', 'BOS', 'BUF', 'DET',  'MIA', 'NEW', 'NOL', 'NYC', 'PHI', 'WAS', 'HQ']
     elif us_loc == "Midwest":
         aor = ['CHI', 'SPM']
-    elif us_loc == 'Southwest':
+    elif us_loc == "Southwest":
         aor = ['DAL', 'DEN', 'ELP', 'HOU', 'PHO',  'SLC', 'SNA']
     elif us_loc == "All":
         aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
