@@ -113,7 +113,7 @@ def func(n_clicks):
     [Input("us_loc", "value")])
 
 def display_arrest_fy(us_loc):
-    arrests_by_fy = pd.read_csv("./data/arrests_by_fy.csv")
+    arrests_by_fy = pd.read_csv("arrests_by_fy.csv")
     if us_loc == "West Coast":
         aor = ['LOS', 'SEA',  'SFR', 'SND']
     elif us_loc == "East Coast":
@@ -126,8 +126,6 @@ def display_arrest_fy(us_loc):
         aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
     else:
         aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
-
-
 
     fig = px.line(arrests_by_fy, x=fy, 
               y=aor, 
