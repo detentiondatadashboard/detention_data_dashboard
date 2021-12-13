@@ -71,11 +71,23 @@ app.layout = html.Div(
                 ),
             ],
             className="wrapper",
+
         ),
+        html.Div(
+            children = [
+                dcc.Dropdown(
+                    id='dropdown1',
+                    options=[{'label': 'SEA', 'value': 'SEA'} ,
+                        {'label': 'ATL','value': 'ATL'}],
+                    value='dish',
+                ),
+                dcc.Graph(id="plot2")
+                ]
+
+            )
+
     ]
 )
-
-
 @app.callback(
     Output("choropleth", "figure"), 
     [Input("candidate", "value")])
@@ -137,7 +149,40 @@ def display_arrest_fy(us_loc):
 
     return fig
 
+@app.callback(
+    Output("plot2", "figure"),
+    Input("dropdown1", "value")
+    )
+
+def display_aor_plot(value):
+    aor_ = ['SEA']
+    if value == 'SEA':
+        aor_ = 'SEA'
+    elif value == 'ATL':
+        aor_ = 'ATL'
+    arrests_by_fy = pd.read_csv("./data/arrests_by_fy.csv")
+    encounters_by_fy = pd.read_csv("./data/encounters_by_fy.csv")
+    removals_by_fy = pd.read_csv("./data/removals_by_fy.csv")
+    date = encounters_by_fy['event_date'].values.tolist()
+    enc = encounters_by_fy[aor_].to_numpy().flatten()
+    rem = removals_by_fy[aor_].to_numpy().flatten()
+    arr = arrests_by_fy[aor_].to_numpy().flatten()
+    columns_ = ['date', 'encounters', 'removals', 'arrests']
+    data_ = []
+    for i in range(len(date)):
+        data_.append([date[i],enc[i],rem[i],arr[i]])
+    temp = pd.DataFrame(data = data_, columns = columns_)
+
+    fig = px.line(temp, x=temp['date'], 
+                  y=[temp['encounters'], temp['removals'], temp['arrests']],
+                  title = "Encounters, Removals, and Arrests in given AOR per FY",
+                  labels=dict(x="Fiscal Year", y="Number of Encounters"))
+    fig.update_xaxes(title="Fiscal Year", nticks = 4)
+    fig.update_yaxes(title="Number of Encounters, Removals, or Arrests")
+    fig.update_layout(legend_title_text='Encounters, Removals, and Arrests key')
+    return fig
+
+
 
 if __name__ == "__main__":
     app.run_server(debug=True)
-
