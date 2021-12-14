@@ -3,10 +3,10 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
-import pandas as pd
 from dash import callback_context
 
-from detention_data_dashboard.data_download import data_download
+from detention_data_dashboard.data_download import data_download_reg, data_download_arrests_aor
+from detention_data_dashboard.figure import display_reg_plot, display_aor_arrests_plot
 
 df = px.data.election()
 geojson = px.data.election_geojson()
@@ -21,7 +21,8 @@ app.title = "ICE Detention Data Dashboard"
 
 fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
 
-loc = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
+loc_list = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
+aor_list = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
 
 app.layout = html.Div(
     children=[
@@ -61,8 +62,8 @@ app.layout = html.Div(
                 dcc.RadioItems(
                     id='us_loc', 
                     options=[{'value': x, 'label': x} 
-                            for x in loc],
-                    value=loc[0],
+                            for x in aor_list],
+                    value=aor_list[0],
                     labelStyle={'display': 'inline-block'}
                 ),
                 html.Div(
@@ -83,8 +84,8 @@ app.layout = html.Div(
                         #{'label': 'ATL','value': 'ATL'}],
                     #value='dish',
                     options=[{'value': x, 'label': x} 
-                            for x in loc],
-                    value=loc[-1],
+                            for x in loc_list],
+                    value=loc_list[-1],
                 ),
                 dcc.Graph(id="plot2")
                 ]
@@ -129,28 +130,9 @@ def func(n_clicks):
     Output("fy_arrests", "figure"),
     [Input("us_loc", "value")])
 
-def display_arrest_fy(us_loc):
-    arrests_by_fy = pd.read_csv("./data/arrests_by_fy.csv")
-    if us_loc == "West Coast":
-        aor = ['LOS', 'SEA',  'SFR', 'SND']
-    elif us_loc == "East Coast":
-        aor = ['ATL', 'BAL', 'BOS', 'BUF', 'DET',  'MIA', 'NEW', 'NOL', 'NYC', 'PHI', 'WAS', 'HQ']
-    elif us_loc == "Midwest":
-        aor = ['CHI', 'SPM']
-    elif us_loc == "Southwest":
-        aor = ['DAL', 'DEN', 'ELP', 'HOU', 'PHO',  'SLC', 'SNA']
-    elif us_loc == "All":
-        aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
-    else:
-        aor = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
-
-    fig = px.line(arrests_by_fy, x=fy, 
-              y=aor, 
-              title = "Arrests in AOR per FY",
-              labels=dict(x="Fiscal Year", y="Number of Arrests"))
-    fig.update_xaxes(title="Fiscal Year", nticks = 4)
-    fig.update_yaxes(title="Number of Arrests")
-    fig.update_layout(legend_title_text='AOR')
+def return_arrest_aor_plot(aor):
+    df = data_download_arrests_aor()
+    fig = display_aor_arrests_plot(aor, df)
 
     return fig
 
@@ -159,16 +141,9 @@ def display_arrest_fy(us_loc):
     Input("dropdown1", "value")
     )
 
-def display_reg_plot(value):
-    # data manipulation
-    df = data_download(value)
-    
-    fig = px.line(df, x=df['date'], y=[df['encounters'], df['removals'], df['arrests']],
-              title = "Encounters, Removals, and Arrests in Region per FY",
-              labels=dict(x="Fiscal Year", y="Number of Arrests"))
-    fig.update_xaxes(title="Fiscal Year", nticks = 4)
-    fig.update_yaxes(title="Number of Arrests")
-    fig.update_layout(legend_title_text=None)
+def return_reg_plot(value):
+    df = data_download_reg(value)
+    fig = display_reg_plot(value, df)
 
     return fig
 

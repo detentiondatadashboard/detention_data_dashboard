@@ -1,6 +1,6 @@
 import pandas as pd
 
-def data_download(us_loc):
+def data_download_reg(us_loc):
 
     if us_loc == "West Coast":
         reg = ['LOS', 'SEA',  'SFR', 'SND']
@@ -29,5 +29,10 @@ def data_download(us_loc):
     for i in ind:
         d.append([date[i], sum(enc.iloc[i]), sum(rem.iloc[i]), sum(arr.iloc[i])])
     df = pd.DataFrame(data = d, columns = columns_)
+
+    return df
+
+def data_download_arrests_aor():
+    df = pd.read_csv("./data/arrests_by_fy.csv")
 
     return df
