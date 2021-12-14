@@ -1,14 +1,14 @@
 """
 Tests for the data_download module
 
-Includes one smoke test, one-shot test, and edge tes
+Includes one smoke test, edge test, and one pattern test
 """
 
 import unittest
 import numpy as np
 import pandas as pd
 
-from .data_download import *
+from detention_data_dashboard.data_download import *
 
 
 class TestDashboard(unittest.TestCase):
@@ -20,8 +20,8 @@ class TestDashboard(unittest.TestCase):
         """
         Simple smoke test to make sure the data downloaded is a dataframe
         """
-        foo = data_download("arrests")
-        assertEqual(type(foo) == "DataFrame")
+        foo = data_download("West Coast")
+        self.assertTrue(str(type(foo)) == "<class 'pandas.core.frame.DataFrame'>")
 
     def test_edge_data(self):
         """
@@ -30,13 +30,11 @@ class TestDashboard(unittest.TestCase):
         with self.assertRaises(NameError):
             data_download("jumping_jacks")
 
-    def test_oneshot_data(self):
+    def test_pattern_data(self):
         """
-        One shot test for data to make sure download has the correct information included (eg correct number of rows and columns)
+        Pattern test for data to make sure download has the correct information included (eg correct number of rows and columns)
         """
-        data = np.array([[dataset, rows, columns],
-                         [arrests, 544059, 9],
-                         [encounters, 1689378, 8],
-                         [removals, 963972, 10]])
-        foo = data_download("arrests")
-        assertEqual(foo.columns == data[[arrests,2]]
+
+        for location in ["East Coast", "West Coast", "Southwest", "Midwest", "All"]:
+            foo = data_download(location)
+            self.assertTrue(foo.shape == (4, 4))

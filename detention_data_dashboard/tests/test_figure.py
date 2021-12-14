@@ -4,15 +4,15 @@ Tests for the figure module
 Includes one smoke test, one-shot test, and edge tes
 """
 
-import unittest
+import os
 import numpy as np
 import pandas as pd
+import unittest
 
-from skimage.metrics import structural_similarity as ssim
-from PIL import Image
+from detention_data_dashboard.figure import *
+from matplotlib.testing.compare import compare_images
 
-from .figure import *
-
+data_path = os.path.join(detention_data_dashboard.__path__[0], 'tests')
 
 class TestDashboard(unittest.TestCase):
     """
@@ -20,26 +20,26 @@ class TestDashboard(unittest.TestCase):
     """
 
     def test_smoke_figure(self):
+        """
         Simple smoke test to make sure object is created of the right type
         """
-        foo = display_arrest_fy("West Coast")
-        assertEqual(type(foo) == "plotly.graph_objects.Figure")
+        foo = display_aor_plot("West Coast")
+        self.assertTrue(str(type(foo)) == "<class 'plotly.graph_objs._figure.Figure'>")
 
     def test_edge_figure(self):
         """
         Edge test to make sure figure will not display if given bad inputs
         """
         with self.assertRaises(NameError):
-            display_arrest_fy("jumping_jacks")
+            display_aor_plot("jumping_jacks")
 
     def test_oneshot_figure(self):
         """
         One shot test for figure by using fuzzy comparison of figure with known results
         """
         for location in ["East Coast", "West Coast", "Southwest", "Midwest", "All"]:
-            imageA = display_arrest_fy(location)
-            imageB = Image.open(location + ".png")
-            s = ssim(imageA, imageB)
-            assert np.isclose(1, s, atol=.1), "image for " + location + "does not match"
-        
-
+            temp = display_aor_plot(location)
+            temp.write_image(data_path + "/test_images/" + location + "1.png")
+            imageA = data_path + "/test_images/" + location + "1" + ".png"
+            imageB = data_path + "/test_images/" + location + ".png"
+            self.assertTrue(str(type(compare_images(imageA, imageB, tol=.1))) == "<class 'NoneType'>")

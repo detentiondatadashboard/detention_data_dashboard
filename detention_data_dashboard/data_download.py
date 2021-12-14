@@ -15,15 +15,19 @@ def data_download(us_loc):
     else:
         raise NameError('Please enter in a valid US region')
 
-    arrests_by_fy = pd.read_csv("./data/arrests_by_fy.csv")
-    encounters_by_fy = pd.read_csv("./data/encounters_by_fy.csv")
-    removals_by_fy = pd.read_csv("./data/removals_by_fy.csv")
+    arrests_by_fy = pd.read_csv("./detention_data_dashboard/data/arrests_by_fy.csv")
+    encounters_by_fy = pd.read_csv("./detention_data_dashboard/data/encounters_by_fy.csv")
+    removals_by_fy = pd.read_csv("./detention_data_dashboard/data/removals_by_fy.csv")
     date = encounters_by_fy['event_date'].values.tolist()
-    enc = encounters_by_fy[aor_].to_numpy().flatten()
-    rem = removals_by_fy[aor_].to_numpy().flatten()
-    arr = arrests_by_fy[aor_].to_numpy().flatten()
+    enc = encounters_by_fy[aor]
+    rem = removals_by_fy[aor]
+    arr = arrests_by_fy[aor]
+    ind = arr.index.tolist()
     columns_ = ['date', 'encounters', 'removals', 'arrests']
-    data_ = []
-    for i in range(len(date)):
-        data_.append([date[i],enc[i],rem[i],arr[i]])
-    temp = pd.DataFrame(data = data_, columns = columns_)
+
+    d = []
+    for i in ind:
+        d.append([date[i], sum(enc.iloc[i]), sum(rem.iloc[i]), sum(arr.iloc[i])])
+    df = pd.DataFrame(data = d, columns = columns_)
+
+    return df

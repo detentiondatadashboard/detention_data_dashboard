@@ -1,4 +1,5 @@
 import plotly.express as px
+import detention_data_dashboard
 
 def display_aor_plot(us_loc):
     if us_loc == "West Coast":
@@ -14,12 +15,13 @@ def display_aor_plot(us_loc):
     else:
         raise NameError('Please enter in a valid US region')
 
-    fig = px.line(arrests_by_fy, x=fy,
-              y=aor,
-              title = "Arrests in AOR per FY",
-              labels=dict(x="Fiscal Year", y="Number of Arrests"))
+    df = detention_data_dashboard.data_download(us_loc)
+    
+    fig = px.line(df, x=df['date'], y=[df['encounters'], df['removals'], df['arrests']],
+              title = "Encounters, Removals, and Arrests in Region per FY",
+              labels=dict(x="Fiscal Year", y="Total"))
     fig.update_xaxes(title="Fiscal Year", nticks = 4)
-    fig.update_yaxes(title="Number of Arrests")
-    fig.update_layout(legend_title_text='AOR')
+    fig.update_yaxes(title="Total")
+    fig.update_layout(legend_title_text=None)
 
     return fig
