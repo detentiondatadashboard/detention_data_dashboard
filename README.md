@@ -19,8 +19,42 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 
 ## How to install
 
+Access the dashboard online here: https://detentiondata.herokuapp.com/
 
 ## Directory structure
 
+```bash
+.
+├── LICENSE
+├── Procfile
+├── README.md
+├── app.py
+├── data
+│   ├── README.md
+│   ├── arrest_dtypes.yaml
+│   ├── arrests.csv
+│   ├── arrests_by_fy.csv
+│   ├── encounter_dtypes.yaml
+│   ├── encounters.csv
+│   ├── ice-facilities.csv
+│   ├── removal_dtypes.yaml
+│   └── removals.csv
+├── detention_data_dashboard
+│   ├── __init__.py
+│   └── tests
+│       ├── __init__.py
+│       └── test_core.py
+├── doc
+│   ├── Tech\ Review\ -\ Web\ Development\ Apps\ for\ Python.txt
+│   ├── Technology\ Review\ -\ Dashboards\ in\ Python.pptx
+│   └── software_design.md
+├── environment.yml
+├── plot_downloads
+│   └── test.png
+├── requirements.txt
+└── runtime.txt
+```
 
 ## Dash app tutorial
+
+![image](https://user-images.githubusercontent.com/91341415/145093061-76cfece2-e7af-47e9-b188-31eee1b8c960.png)
