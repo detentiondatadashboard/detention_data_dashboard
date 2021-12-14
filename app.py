@@ -6,6 +6,8 @@ import plotly.express as px
 import pandas as pd
 from dash import callback_context
 
+from detention_data_dashboard.data_download import data_download
+
 df = px.data.election()
 geojson = px.data.election_geojson()
 candidates = df.winner.unique()
@@ -77,9 +79,12 @@ app.layout = html.Div(
             children = [
                 dcc.Dropdown(
                     id='dropdown1',
-                    options=[{'label': 'SEA', 'value': 'SEA'} ,
-                        {'label': 'ATL','value': 'ATL'}],
-                    value='dish',
+                    #options=[{'label': 'SEA', 'value': 'SEA'} ,
+                        #{'label': 'ATL','value': 'ATL'}],
+                    #value='dish',
+                    options=[{'value': x, 'label': x} 
+                            for x in loc],
+                    value=loc[-1],
                 ),
                 dcc.Graph(id="plot2")
                 ]
@@ -154,32 +159,17 @@ def display_arrest_fy(us_loc):
     Input("dropdown1", "value")
     )
 
-def display_aor_plot(value):
-    aor_ = ['SEA']
-    if value == 'SEA':
-        aor_ = 'SEA'
-    elif value == 'ATL':
-        aor_ = 'ATL'
-    arrests_by_fy = pd.read_csv("./data/arrests_by_fy.csv")
-    encounters_by_fy = pd.read_csv("./data/encounters_by_fy.csv")
-    removals_by_fy = pd.read_csv("./data/removals_by_fy.csv")
-    date = encounters_by_fy['event_date'].values.tolist()
-    enc = encounters_by_fy[aor_].to_numpy().flatten()
-    rem = removals_by_fy[aor_].to_numpy().flatten()
-    arr = arrests_by_fy[aor_].to_numpy().flatten()
-    columns_ = ['date', 'encounters', 'removals', 'arrests']
-    data_ = []
-    for i in range(len(date)):
-        data_.append([date[i],enc[i],rem[i],arr[i]])
-    temp = pd.DataFrame(data = data_, columns = columns_)
-
-    fig = px.line(temp, x=temp['date'], 
-                  y=[temp['encounters'], temp['removals'], temp['arrests']],
-                  title = "Encounters, Removals, and Arrests in given AOR per FY",
-                  labels=dict(x="Fiscal Year", y="Number of Encounters"))
+def display_reg_plot(value):
+    # data manipulation
+    df = data_download(value)
+    
+    fig = px.line(df, x=df['date'], y=[df['encounters'], df['removals'], df['arrests']],
+              title = "Encounters, Removals, and Arrests in Region per FY",
+              labels=dict(x="Fiscal Year", y="Number of Arrests"))
     fig.update_xaxes(title="Fiscal Year", nticks = 4)
-    fig.update_yaxes(title="Number of Encounters, Removals, or Arrests")
-    fig.update_layout(legend_title_text='Encounters, Removals, and Arrests key')
+    fig.update_yaxes(title="Number of Arrests")
+    fig.update_layout(legend_title_text=None)
+
     return fig
 
 
