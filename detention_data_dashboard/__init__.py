@@ -1,6 +1,5 @@
-"""
-importing the data_download and figure modules
+""
+importing all the functions from the app python script
 """
 
-from .data_download import *
-from .figure import *
+from .app import *
