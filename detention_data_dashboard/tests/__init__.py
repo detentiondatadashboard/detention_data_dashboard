@@ -1,5 +1,6 @@
 """
-import all the functions from test_core script 
+import all the functions from test modules 
 """
 
-from .test_core import *
+from .test_data_download import *
+from .test_figure import *
