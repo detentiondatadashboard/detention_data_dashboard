@@ -3,6 +3,7 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
+import pandas as pd
 
 from detention_data_dashboard.data_download import data_download_reg, data_download_arrests_aor
 from detention_data_dashboard.figure import display_reg_plot, display_aor_arrests_plot
@@ -22,6 +23,7 @@ fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
 
 loc_list = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
 aor_list = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
+dataset_list = ['arrests', 'encounters', 'ice-facilities', 'removals']
 
 app.layout = html.Div(
     children=[
@@ -36,6 +38,20 @@ app.layout = html.Div(
                     " between 2010 and 2020",
                     className="header-description",
                 ),
+                html.Div(
+                    children=[
+                        dcc.Dropdown(
+                            id='all-data',
+                            options=[
+                                {'value': x, 'label': x}
+                                for x in dataset_list
+                            ],
+                            value=dataset_list[-1],
+                        ),
+                        html.Button("Download Dataset", id="btn_download_data"),  
+                        dcc.Download(id="download-dataset"),                      
+                    ]
+                )
             ],
             className="header",
         ),
@@ -145,6 +161,17 @@ def return_reg_plot(value):
 
     return fig
 
+
+@app.callback(
+    Output("download-dataset", "data"),
+    Input("btn_download_data", "n_clicks"),
+    Input("all-data", "value"),
+    prevent_initial_call=True,
+)
+def func(n_clicks, value):
+    file = './data/' + value + '.csv'
+    dt = pd.read_csv(file, sep='|')
+    return dcc.send_data_frame(dt.to_csv, "dataset.csv")
 
 
 if __name__ == "__main__":
