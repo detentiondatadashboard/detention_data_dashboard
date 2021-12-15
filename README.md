@@ -4,9 +4,9 @@
 
 ## About the project
 
-A dashboard and data repository of ICE detention facilities and their characteristics
+A dashboard and data repository of ICE immigration detention facilities and trends.
 
-Data source: All data courtesy of the [University of Washington's Center for Human Rights](https://jsis.washington.edu/humanrights/)
+Data source: the [University of Washington's Center for Human Rights](https://jsis.washington.edu/humanrights/)
 
 Through numerous FOIA requests and litigation, UW’s Center for Human Rights has obtained dozens of
 datasets spanning roughly 2010-2020 related to ICE migrant detention facilities across the US. 
@@ -57,4 +57,4 @@ Access the dashboard online here: https://detentiondata.herokuapp.com/
 
 ## Dash app tutorial
 
-![image](https://user-images.githubusercontent.com/91341415/145093061-76cfece2-e7af-47e9-b188-31eee1b8c960.png)
+
