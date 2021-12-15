@@ -56,7 +56,8 @@ def data_download_arrests_aor(aor):
         data_frame: a pandas dataframe containing information about arrests per aor per fiscal year
     """
     arrests = pd.read_csv("./data/arrests_by_fy.csv")
-    aor_list = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
+    aor_list = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS',
+     'MIA','NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
 
     if aor in aor_list:
         arrests_aor = arrests[aor]
@@ -71,13 +72,16 @@ def data_download_arrests_aor(aor):
 
         return data_frame
 
-    else:
-         raise NameError('Please enter in a valid AOR')
-
-    return data_frame
+    raise NameError('Please enter in a valid AOR')
 
 def data_download_ice_detention():
+    """
+    Generates pandas dataframe containing information about the location of ice detention centers
+
+    returns:
+        data_frame: a pandas dataframe containing information about the location of ice detention
+        centers
+    """
     data_frame = pd.read_csv("./data/lat_long_det_fac_99.csv")
 
     return data_frame
-
