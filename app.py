@@ -54,12 +54,6 @@ app.layout = html.Div(
         ),
         html.Div(
             children=[
-                dcc.Dropdown(
-                    id='candidate', 
-                    options=[{'value': x, 'label': x} 
-                        for x in candidates],
-                    value=candidates[0],
-                ),
                 html.Div(
                     children=[dcc.Graph(
                         id="ice_detention", config={"displayModeBar": False},
