@@ -63,17 +63,21 @@ def display_ice_detention_map(data_frame, color):
     returns:
         fig: a plotly map of ice detention centers in the US
     """
+    if str(type(data_frame)) == "<class 'pandas.core.frame.DataFrame'>":
+        fig = go.Figure(
+            data=go.Scattergeo(
+                lon = data_frame['long'],
+                lat = data_frame['lat'],
+                text = data_frame['address'],
+                mode = 'markers',
+                marker_color = color,
+                ))
+        fig.update_layout(
+            title = 'ICE Detention Facilities across the US',
+            geo_scope='usa',
+        ) 
 
-    fig = go.Figure(
-        data=go.Scattergeo(
-            lon = data_frame['long'],
-            lat = data_frame['lat'],
-            text = data_frame['address'],
-            mode = 'markers',
-            marker_color = color,
-            ))
-    fig.update_layout(
-        title = 'ICE Detention Facilities across the US',
-        geo_scope='usa',
-    )
-    return fig
+        return fig
+
+    raise NameError('Please enter in a dataframe')
+        

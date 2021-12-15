@@ -1,7 +1,7 @@
 """
 Tests for the figure module
 
-Includes one smoke test, one-shot test, and edge tes
+Includes one smoke test, one-shot test, and edge test
 """
 
 import os
@@ -75,4 +75,31 @@ class TestDashboard(unittest.TestCase):
             image_a = data_path + "/test_images/" + location + "1" + ".png"
             image_b = data_path + "/test_images/" + location + ".png"
             self.assertTrue(str(type(compare_images(image_a, image_b, tol=.1))) ==
+                                     "<class 'NoneType'>")
+
+    def test_smoke_figure3(self):
+        """
+        Simple smoke test to make sure object is created of the right type
+        """
+        data = data_download_ice_detention()
+        fob = display_ice_detention_map(data, 'blue')
+        self.assertTrue(str(type(fob)) == "<class 'plotly.graph_objs._figure.Figure'>")
+
+    def test_edge_figure3(self):
+        """
+        Edge test to make sure figure will not display if given bad inputs
+        """
+        with self.assertRaises(NameError):
+            display_aor_arrests_plot("jumping_jacks")
+
+    def test_oneshot_figure3(self):
+        """
+        One shot test for figure by using fuzzy comparison of figure with known results
+        """
+        data = data_download_ice_detention()
+        temp = display_ice_detention_map(data, 'blue')
+        temp.write_image(data_path + "/test_images/map_blue1.png")
+        image_a = data_path + "/test_images/map_blue1.png"
+        image_b = data_path + "/test_images/map_blue.png"
+        self.assertTrue(str(type(compare_images(image_a, image_b, tol=.1))) ==
                                      "<class 'NoneType'>")

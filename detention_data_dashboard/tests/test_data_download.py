@@ -61,3 +61,19 @@ class TestDashboard(unittest.TestCase):
                          'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']:
             fob = data_download_arrests_aor(location)
             self.assertTrue(fob.shape == (4, 2))
+
+    def test_smoke_data3(self):
+        """
+        Simple smoke test to make sure the data downloaded is a dataframe
+        """
+        fob = data_download_ice_detention()
+        self.assertTrue(str(type(fob)) == "<class 'pandas.core.frame.DataFrame'>")
+
+    def test_pattern_data3(self):
+        """
+        Pattern test for data to make sure download has the correct information included
+        (eg correct number of rows and columns)
+        """
+
+        fob = data_download_ice_detention()
+        self.assertTrue(fob.shape == (100, 7))
