@@ -1,10 +1,18 @@
+"""
+script to create dashboard for heroku deployment
+"""
+
 import dash
 from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 
-from detention_data_dashboard.data_download import data_download_reg, data_download_arrests_aor, data_download_ice_detention
-from detention_data_dashboard.figure import display_reg_plot, display_aor_arrests_plot, display_ice_detention_map
+from detention_data_dashboard.data_download import data_download_reg
+from detention_data_dashboard.data_download import data_download_arrests_aor
+from detention_data_dashboard.data_download import data_download_ice_detention
+from detention_data_dashboard.figure import display_reg_plot
+from detention_data_dashboard.figure import display_aor_arrests_plot
+from detention_data_dashboard.figure import display_ice_detention_map
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -23,10 +31,10 @@ aor_list = [
 ]
 dataset_list = ['arrests', 'encounters', 'ice-facilities', 'removals']
 
-clicks_1 = None
-clicks_2 = None
-clicks_3 = None
-clicks_4 = None
+CLICKS_1 = None
+CLICKS_2 = None
+CLICKS_3 = None
+CLICKS_4 = None
 
 app.layout = html.Div(children=[
     html.Div(
@@ -112,7 +120,8 @@ app.layout = html.Div(children=[
 @app.callback(Output("ice_detention", "figure"), Input("color", "value"))
 def return_ice_detention_fig(value):
     """
-    pieces of code taken from https://www.kaggle.com/pavansanagapati/interactive-choropleth-point-maps-using-plotly?scriptVersionId=36440837&cellId=19
+    pieces of code taken from https://www.kaggle.com/pavansanagapati/
+    interactive-choropleth-point-maps-using-plotly?scriptVersionId=36440837&cellId=19
     """
     df = data_download_ice_detention()
     fig = display_ice_detention_map(df, 'blue')
@@ -126,17 +135,24 @@ def return_ice_detention_fig(value):
     prevent_initial_call=True,
 )
 def func(n_clicks):
-    global clicks_2
+    """
+    function to measure clicks
+    """
+    global CLICKS_2
 
-    if clicks_2 == n_clicks: return
+    if CLICKS_2 == n_clicks:
+        return
 
-    clicks_2 = n_clicks
+    CLICKS_2 = n_clicks
     df = data_download_ice_detention()
     return dcc.send_data_frame(df.to_csv, "mydf.csv")
 
 
 @app.callback(Output("fy_arrests", "figure"), [Input("us_loc", "value")])
 def return_arrest_aor_plot(value):
+    """
+    function that takes aor and produces image
+    """
     df = data_download_arrests_aor(value)
     fig = display_aor_arrests_plot(df)
 
@@ -150,17 +166,24 @@ def return_arrest_aor_plot(value):
     prevent_initial_call=True,
 )
 def func(n_clicks, value):
-    global clicks_3
+    """
+    function to measure clicks
+    """
+    global CLICKS_3
 
-    if clicks_3 == n_clicks: return
+    if CLICKS_3 == n_clicks:
+        return
 
-    clicks_3 = n_clicks
+    CLICKS_3 = n_clicks
     df = data_download_arrests_aor(value)
     return dcc.send_data_frame(df.to_csv, "mydf.csv")
 
 
 @app.callback(Output("plot2", "figure"), Input("dropdown1", "value"))
 def return_reg_plot(value):
+    """
+    function that takes region and returns plot
+    """
     df = data_download_reg(value)
     fig = display_reg_plot(df)
 
@@ -174,11 +197,15 @@ def return_reg_plot(value):
     prevent_initial_call=True,
 )
 def func(n_clicks, value):
-    global clicks_4
+    """
+    function to measure clicks
+    """
+    global CLICKS_4
 
-    if clicks_4 == n_clicks: return
+    if CLICKS_4 == n_clicks:
+        return
 
-    clicks_4 = n_clicks
+    CLICKS_4 = n_clicks
     df = data_download_reg(value)
     return dcc.send_data_frame(df.to_csv, "mydf.csv")
 
@@ -190,11 +217,15 @@ def func(n_clicks, value):
     prevent_initial_call=True,
 )
 def func(n_clicks, value):
-    global clicks_1
+    """
+    function to measure clicks
+    """
+    global CLICKS_1
 
-    if clicks_1 == n_clicks: return
+    if CLICKS_1 == n_clicks:
+        return
 
-    clicks_1 = n_clicks
+    CLICKS_1 = n_clicks
     return dcc.send_file('./data/' + value + '.csv.zip')
 
 
