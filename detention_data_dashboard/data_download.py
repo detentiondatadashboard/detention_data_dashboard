@@ -67,3 +67,11 @@ def data_download_arrests_aor(aor):
     data_frame = pd.DataFrame(data = data_list, columns = cols)
 
     return data_frame
+
+def data_download_ice_detention():
+    data_frame = pd.read_csv("./data/lat_long_det_fac_99.csv")
+
+    return data_frame
+
+
+

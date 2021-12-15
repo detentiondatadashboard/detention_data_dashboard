@@ -3,6 +3,8 @@ File containing relevant functions for generating figures.
 """
 
 import plotly.express as px
+import plotly
+import plotly.graph_objects as go
 
 def display_reg_plot(data_frame):
     """
@@ -42,4 +44,20 @@ def display_aor_arrests_plot(data_frame):
     fig.update_yaxes(title="Number of Arrests")
     fig.update_layout(legend_title_text='AOR')
 
+    return fig
+
+def display_ice_detention_map(df, color):
+
+    fig = go.Figure(
+        data=go.Scattergeo(
+            lon = df['long'],
+            lat = df['lat'],
+            text = df['address'],
+            mode = 'markers',
+            marker_color = color,
+            ))
+    fig.update_layout(
+        title = 'Ice Detention Centers',
+        geo_scope='usa',
+    )
     return fig
