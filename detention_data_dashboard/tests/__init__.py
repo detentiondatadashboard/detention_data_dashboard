@@ -1,5 +1,6 @@
 """
-import all the functions from test_core script 
+importing the data_download and figure modules
 """
 
-from .test_core import *
+from detention_data_dashboard.data_download import *
+from detention_data_dashboard.figure import *
