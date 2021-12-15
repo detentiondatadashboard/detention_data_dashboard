@@ -21,8 +21,6 @@ server = app.server
 
 app.title = "ICE Detention Data Dashboard"
 
-fy = ['2015-10-01', '2016-10-01', '2017-10-01', '2018-10-01']
-
 loc_list = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
 aor_list = [
     'ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ',
@@ -120,11 +118,15 @@ app.layout = html.Div(children=[
 @app.callback(Output("ice_detention", "figure"), Input("color", "value"))
 def return_ice_detention_fig(value):
     """
-    pieces of code taken from https://www.kaggle.com/pavansanagapati/
-    interactive-choropleth-point-maps-using-plotly?scriptVersionId=36440837&cellId=19
+    Function to display ice detention center map
+
+    parameters:
+        value: an unused input in order to make the callback work
+    returns:
+        fig: plotly dash map of ice detention centers
     """
-    df = data_download_ice_detention()
-    fig = display_ice_detention_map(df, 'blue')
+    data_frame = data_download_ice_detention()
+    fig = display_ice_detention_map(data_frame, 'blue')
 
     return fig
 
@@ -136,7 +138,12 @@ def return_ice_detention_fig(value):
 )
 def func(n_clicks):
     """
-    function to measure clicks
+    Function to measure clicks for downloading the dataframe
+
+    parameters:
+        n_clicks: number of clicks
+    returns:
+        dataframe to csv dash function call
     """
     global CLICKS_2
 
@@ -144,17 +151,22 @@ def func(n_clicks):
         return
 
     CLICKS_2 = n_clicks
-    df = data_download_ice_detention()
-    return dcc.send_data_frame(df.to_csv, "mydf.csv")
+    data_frame = data_download_ice_detention()
+    return dcc.send_data_frame(data_frame.to_csv, "mydf.csv")
 
 
 @app.callback(Output("fy_arrests", "figure"), [Input("us_loc", "value")])
 def return_arrest_aor_plot(value):
     """
-    function that takes aor and produces image
+    Function to display arrests per aor plot
+
+    parameters:
+        value: aor string representing area of responsibility
+    returns:
+        fig: plotly dash figure of arrests per aor
     """
-    df = data_download_arrests_aor(value)
-    fig = display_aor_arrests_plot(df)
+    data_frame = data_download_arrests_aor(value)
+    fig = display_aor_arrests_plot(data_frame)
 
     return fig
 
@@ -167,7 +179,13 @@ def return_arrest_aor_plot(value):
 )
 def func(n_clicks, value):
     """
-    function to measure clicks
+    Function to measure clicks for downloading the dataframe for a particular aor
+
+    parameters:
+        n_clicks: number of clicks
+        value: aor string representing area of responsibility
+    returns:
+        dataframe to csv dash function call
     """
     global CLICKS_3
 
@@ -175,17 +193,22 @@ def func(n_clicks, value):
         return
 
     CLICKS_3 = n_clicks
-    df = data_download_arrests_aor(value)
-    return dcc.send_data_frame(df.to_csv, "mydf.csv")
+    data_frame = data_download_arrests_aor(value)
+    return dcc.send_data_frame(data_frame.to_csv, "mydf.csv")
 
 
 @app.callback(Output("plot2", "figure"), Input("dropdown1", "value"))
 def return_reg_plot(value):
     """
-    function that takes region and returns plot
+    Function to display region plot
+
+    parameters:
+        value: string containing region to display
+    returns:
+        fig: plotly dash figure of arrests, encounters, and removals per region
     """
-    df = data_download_reg(value)
-    fig = display_reg_plot(df)
+    data_frame = data_download_reg(value)
+    fig = display_reg_plot(data_frame)
 
     return fig
 
@@ -198,7 +221,13 @@ def return_reg_plot(value):
 )
 def func(n_clicks, value):
     """
-    function to measure clicks
+    Function to measure clicks for downloading the dataframe for a particular region
+
+    parameters:
+        n_clicks: number of clicks
+        value: region string
+    returns:
+        dataframe to csv dash function call
     """
     global CLICKS_4
 
@@ -206,8 +235,8 @@ def func(n_clicks, value):
         return
 
     CLICKS_4 = n_clicks
-    df = data_download_reg(value)
-    return dcc.send_data_frame(df.to_csv, "mydf.csv")
+    data_frame = data_download_reg(value)
+    return dcc.send_data_frame(data_frame.to_csv, "mydf.csv")
 
 
 @app.callback(
@@ -218,7 +247,13 @@ def func(n_clicks, value):
 )
 def func(n_clicks, value):
     """
-    function to measure clicks
+    Function to measure clicks for downloading the dataframe as zipped csv
+
+    parameters:
+        n_clicks: number of clicks
+        value: dataframe string
+    returns:
+        dataframe to zipped csv dash function call
     """
     global CLICKS_1
 
