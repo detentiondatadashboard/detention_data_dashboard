@@ -65,66 +65,6 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 │       ├── test_data_download.py
 │       ├── test_figure.py
 │       └── test_images
-│           ├── ATL.png
-│           ├── ATL1.png
-│           ├── All.png
-│           ├── All1.png
-│           ├── BAL.png
-│           ├── BAL1.png
-│           ├── BOS.png
-│           ├── BOS1.png
-│           ├── BUF.png
-│           ├── BUF1.png
-│           ├── CHI.png
-│           ├── CHI1.png
-│           ├── DAL.png
-│           ├── DAL1.png
-│           ├── DEN.png
-│           ├── DEN1.png
-│           ├── DET.png
-│           ├── DET1.png
-│           ├── ELP.png
-│           ├── ELP1.png
-│           ├── East\ Coast.png
-│           ├── East\ Coast1.png
-│           ├── HOU.png
-│           ├── HOU1.png
-│           ├── HQ.png
-│           ├── HQ1.png
-│           ├── LOS.png
-│           ├── LOS1.png
-│           ├── MIA.png
-│           ├── MIA1.png
-│           ├── Midwest.png
-│           ├── Midwest1.png
-│           ├── NEW.png
-│           ├── NEW1.png
-│           ├── NOL.png
-│           ├── NOL1.png
-│           ├── NYC.png
-│           ├── NYC1.png
-│           ├── PHI.png
-│           ├── PHI1.png
-│           ├── PHO.png
-│           ├── PHO1.png
-│           ├── SEA.png
-│           ├── SEA1.png
-│           ├── SFR.png
-│           ├── SFR1.png
-│           ├── SLC.png
-│           ├── SLC1.png
-│           ├── SNA.png
-│           ├── SNA1.png
-│           ├── SND.png
-│           ├── SND1.png
-│           ├── SPM.png
-│           ├── SPM1.png
-│           ├── Southwest.png
-│           ├── Southwest1.png
-│           ├── WAS.png
-│           ├── WAS1.png
-│           ├── West\ Coast.png
-│           └── West\ Coast1.png
 ├── doc
 │   ├── software_design.md
 │   └── tech_reviews
