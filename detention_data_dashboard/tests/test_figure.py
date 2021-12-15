@@ -4,12 +4,9 @@ Tests for the figure module
 Includes one smoke test, one-shot test, and edge tes
 """
 
-import detention_data_dashboard
 import os
-import numpy as np
-import pandas as pd
 import unittest
-
+import detention_data_dashboard
 
 from detention_data_dashboard.figure import *
 from detention_data_dashboard.data_download import *
@@ -26,9 +23,9 @@ class TestDashboard(unittest.TestCase):
         """
         Simple smoke test to make sure object is created of the right type
         """
-        data_WC = data_download_reg("West Coast")
-        foo = display_reg_plot(data_WC)
-        self.assertTrue(str(type(foo)) == "<class 'plotly.graph_objs._figure.Figure'>")
+        data_wc = data_download_reg("West Coast")
+        fob = display_reg_plot(data_wc)
+        self.assertTrue(str(type(fob)) == "<class 'plotly.graph_objs._figure.Figure'>")
 
     def test_edge_figure1(self):
         """
@@ -45,17 +42,18 @@ class TestDashboard(unittest.TestCase):
             data = data_download_reg(location)
             temp = display_reg_plot(data)
             temp.write_image(data_path + "/test_images/" + location + "1.png")
-            imageA = data_path + "/test_images/" + location + "1" + ".png"
-            imageB = data_path + "/test_images/" + location + ".png"
-            self.assertTrue(str(type(compare_images(imageA, imageB, tol=.1))) == "<class 'NoneType'>")
+            image_a = data_path + "/test_images/" + location + "1" + ".png"
+            image_b = data_path + "/test_images/" + location + ".png"
+            self.assertTrue(str(type(compare_images(image_a, image_b, tol=.1))) ==
+                            "<class 'NoneType'>")
 
     def test_smoke_figure2(self):
         """
         Simple smoke test to make sure object is created of the right type
         """
-        data_LOS = data_download_arrests_aor("LOS")
-        foo = display_aor_arrests_plot(data_LOS)
-        self.assertTrue(str(type(foo)) == "<class 'plotly.graph_objs._figure.Figure'>")
+        data_los = data_download_arrests_aor("LOS")
+        fob = display_aor_arrests_plot(data_los)
+        self.assertTrue(str(type(fob)) == "<class 'plotly.graph_objs._figure.Figure'>")
 
     def test_edge_figure2(self):
         """
@@ -68,10 +66,13 @@ class TestDashboard(unittest.TestCase):
         """
         One shot test for figure by using fuzzy comparison of figure with known results
         """
-        for location in ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']:
+        for location in ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP',
+                         'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO',
+                         'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']:
             data = data_download_arrests_aor(location)
             temp = display_aor_arrests_plot(data)
             temp.write_image(data_path + "/test_images/" + location + "1.png")
-            imageA = data_path + "/test_images/" + location + "1" + ".png"
-            imageB = data_path + "/test_images/" + location + ".png"
-            self.assertTrue(str(type(compare_images(imageA, imageB, tol=.1))) == "<class 'NoneType'>")
+            image_a = data_path + "/test_images/" + location + "1" + ".png"
+            image_b = data_path + "/test_images/" + location + ".png"
+            self.assertTrue(str(type(compare_images(image_a, image_b, tol=.1))) ==
+                                     "<class 'NoneType'>")
