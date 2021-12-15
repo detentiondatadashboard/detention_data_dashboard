@@ -3,7 +3,6 @@ from dash import dcc
 from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
-from dash import callback_context
 
 from detention_data_dashboard.data_download import data_download_reg, data_download_arrests_aor
 from detention_data_dashboard.figure import display_reg_plot, display_aor_arrests_plot
@@ -42,12 +41,11 @@ app.layout = html.Div(
         ),
         html.Div(
             children=[
-                dcc.RadioItems(
-                id='candidate', 
-                options=[{'value': x, 'label': x} 
-                    for x in candidates],
-                value=candidates[0],
-                labelStyle={'display': 'inline-block'}
+                dcc.Dropdown(
+                    id='candidate', 
+                    options=[{'value': x, 'label': x} 
+                        for x in candidates],
+                    value=candidates[0],
                 ),
                 html.Div(
                     children=[dcc.Graph(
@@ -59,12 +57,11 @@ app.layout = html.Div(
                     dcc.Download(id="download-image")],
                     className="card",
                 ),
-                dcc.RadioItems(
+                dcc.Dropdown(
                     id='us_loc', 
                     options=[{'value': x, 'label': x} 
                             for x in aor_list],
                     value=aor_list[0],
-                    labelStyle={'display': 'inline-block'}
                 ),
                 html.Div(
                     children=dcc.Graph(
@@ -80,18 +77,19 @@ app.layout = html.Div(
             children = [
                 dcc.Dropdown(
                     id='dropdown1',
-                    #options=[{'label': 'SEA', 'value': 'SEA'} ,
-                        #{'label': 'ATL','value': 'ATL'}],
-                    #value='dish',
                     options=[{'value': x, 'label': x} 
                             for x in loc_list],
                     value=loc_list[-1],
                 ),
-                dcc.Graph(id="plot2")
-                ]
-
-            )
-
+                html.Div(
+                    children=dcc.Graph(
+                        id="plot2"
+                    ),
+                    className="card",
+                ),
+            ],
+            className="wrapper",
+        ),
     ]
 )
 @app.callback(
