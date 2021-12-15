@@ -17,10 +17,6 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 - Python3
 - For required python packages, see requirements.txt
 
-## How to install
-
-Access the dashboard online here: https://detentiondata.herokuapp.com/
-
 ## Directory structure
 
 ```bash
@@ -55,6 +51,10 @@ Access the dashboard online here: https://detentiondata.herokuapp.com/
 └── runtime.txt
 ```
 
+## How to use
+
+Access the dashboard online here: https://detentiondata.herokuapp.com/
+
 ## Dash app tutorial
 
-
+[to be added]
