@@ -131,8 +131,8 @@ def func(n_clicks):
     [Input("us_loc", "value")])
 
 def return_arrest_aor_plot(aor):
-    df = data_download_arrests_aor()
-    fig = display_aor_arrests_plot(aor, df)
+    df = data_download_arrests_aor(aor)
+    fig = display_aor_arrests_plot(df)
 
     return fig
 
@@ -143,7 +143,7 @@ def return_arrest_aor_plot(aor):
 
 def return_reg_plot(value):
     df = data_download_reg(value)
-    fig = display_reg_plot(value, df)
+    fig = display_reg_plot(df)
 
     return fig
 

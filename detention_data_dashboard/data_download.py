@@ -1,7 +1,19 @@
+"""
+File containing relevant functions for obtaining and downloading data.
+"""
+
 import pandas as pd
 
 def data_download_reg(us_loc):
+    """
+    Generates pandas dataframe of encounters, removals, and arrests per region per fiscal year
 
+    parameters:
+        us_loc: a string of a region in the US: West Coast, East Coast, Midwest, Southwest, or All
+    returns:
+        data_frame: a pandas dataframe containing information about encounters, removals, and
+            arrests per region per fiscal year
+    """
     if us_loc == "West Coast":
         reg = ['LOS', 'SEA',  'SFR', 'SND']
     elif us_loc == "East Coast":
@@ -11,7 +23,9 @@ def data_download_reg(us_loc):
     elif us_loc == "Southwest":
         reg = ['DAL', 'DEN', 'ELP', 'HOU', 'PHO',  'SLC', 'SNA']
     elif us_loc == "All":
-        reg = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
+        reg = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS',
+            'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA',
+            'SFR', 'SLC', 'SNA', 'SND', 'SPM','WAS']
     else:
         raise NameError('Please enter in a valid US region')
 
@@ -23,16 +37,33 @@ def data_download_reg(us_loc):
     rem = removals_by_fy[reg]
     arr = arrests_by_fy[reg]
     ind = arr.index.tolist()
-    columns_ = ['date', 'encounters', 'removals', 'arrests']
+    cols = ['date', 'encounters', 'removals', 'arrests']
 
-    d = []
+    data_list = []
     for i in ind:
-        d.append([date[i], sum(enc.iloc[i]), sum(rem.iloc[i]), sum(arr.iloc[i])])
-    df = pd.DataFrame(data = d, columns = columns_)
+        data_list.append([date[i], sum(enc.iloc[i]), sum(rem.iloc[i]), sum(arr.iloc[i])])
+    data_frame = pd.DataFrame(data = data_list, columns = cols)
 
-    return df
+    return data_frame
 
-def data_download_arrests_aor():
-    df = pd.read_csv("./data/arrests_by_fy.csv")
+def data_download_arrests_aor(aor):
+    """
+    Generates pandas dataframe containing information about arrests per aor per fiscal year
 
-    return df
+    parameters:
+        aor: a string of the area of responsibility region code
+    returns:
+        data_frame: a pandas dataframe containing information about arrests per aor per fiscal year
+    """
+    arrests = pd.read_csv("./data/arrests_by_fy.csv")
+    arrests_aor = arrests[aor]
+    date = arrests['apprehension_date'].values.tolist()
+    ind = arrests.index.tolist()
+    cols = ['date', 'arrests']
+
+    data_list = []
+    for i in ind:
+        data_list.append([date[i], arrests_aor[i]])
+    data_frame = pd.DataFrame(data = data_list, columns = cols)
+
+    return data_frame
