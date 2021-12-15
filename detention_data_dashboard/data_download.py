@@ -56,14 +56,20 @@ def data_download_arrests_aor(aor):
         data_frame: a pandas dataframe containing information about arrests per aor per fiscal year
     """
     arrests = pd.read_csv("./data/arrests_by_fy.csv")
-    arrests_aor = arrests[aor]
-    date = arrests['apprehension_date'].values.tolist()
-    ind = arrests.index.tolist()
-    cols = ['date', 'arrests']
+    aor_list = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
 
-    data_list = []
-    for i in ind:
-        data_list.append([date[i], arrests_aor[i]])
-    data_frame = pd.DataFrame(data = data_list, columns = cols)
+    if aor in aor_list:
+        arrests_aor = arrests[aor]
+        date = arrests['apprehension_date'].values.tolist()
+        ind = arrests.index.tolist()
+        cols = ['date', 'arrests']
 
-    return data_frame
+        data_list = []
+        for i in ind:
+            data_list.append([date[i], arrests_aor[i]])
+        data_frame = pd.DataFrame(data = data_list, columns = cols)
+
+        return data_frame
+
+    else:
+         raise NameError('Please enter in a valid AOR')

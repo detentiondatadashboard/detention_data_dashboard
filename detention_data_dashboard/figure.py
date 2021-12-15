@@ -15,15 +15,20 @@ def display_reg_plot(data_frame):
         fig: a plotly line plot figure of the encounters, removals, and arrests per region per
         fiscal year
     """
-    fig = px.line(data_frame, x=data_frame['date'], y=[data_frame['encounters'],
-              data_frame['removals'], data_frame['arrests']],
-              title = "Encounters, Removals, and Arrests in Region per FY",
-              labels=dict(x="Fiscal Year", y="Number of Arrests"))
-    fig.update_xaxes(title="Fiscal Year", nticks = 4)
-    fig.update_yaxes(title="Number of Arrests")
-    fig.update_layout(legend_title_text=None)
+    if str(type(data_frame)) == "<class 'pandas.core.frame.DataFrame'>":
+        fig = px.line(data_frame, x=data_frame['date'], y=[data_frame['encounters'],
+                  data_frame['removals'], data_frame['arrests']],
+                  title = "Encounters, Removals, and Arrests in Region per FY",
+                  labels=dict(x="Fiscal Year", y="Total"))
+        fig.update_xaxes(title="Fiscal Year", nticks = 4)
+        fig.update_yaxes(title="Total")
+        fig.update_layout(legend_title_text=None)
 
-    return fig
+        return fig
+
+    else:
+        raise NameError('Please enter in a dataframe') 
+
 
 def display_aor_arrests_plot(data_frame):
     """
@@ -34,12 +39,16 @@ def display_aor_arrests_plot(data_frame):
     returns:
         fig: a plotly line plot figure of the arrests per aor per fiscal year
     """
-    fig = px.line(data_frame, x=data_frame['date'],
-              y=data_frame['arrests'],
-              title = "Arrests in AOR per FY",
-              labels=dict(x="Fiscal Year", y="Number of Arrests"))
-    fig.update_xaxes(title="Fiscal Year", nticks = 4)
-    fig.update_yaxes(title="Number of Arrests")
-    fig.update_layout(legend_title_text='AOR')
+    if str(type(data_frame)) == "<class 'pandas.core.frame.DataFrame'>":
+        fig = px.line(data_frame, x=data_frame['date'],
+                  y=data_frame['arrests'],
+                  title = "Arrests in AOR per FY",
+                  labels=dict(x="Fiscal Year", y="Total Arrests"))
+        fig.update_xaxes(title="Fiscal Year", nticks = 4)
+        fig.update_yaxes(title="Total Arrests")
+        fig.update_layout(legend_title_text='AOR')
 
-    return fig
+        return fig
+
+    else:
+        raise NameError('Please enter in a dataframe')
