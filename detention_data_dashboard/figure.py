@@ -73,7 +73,7 @@ def display_ice_detention_map(data_frame, color):
             marker_color = color,
             ))
     fig.update_layout(
-        title = 'Ice Detention Centers',
+        title = 'ICE Detention Facilities across the US',
         geo_scope='usa',
     )
     return fig
