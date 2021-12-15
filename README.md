@@ -64,5 +64,11 @@ Access the dashboard online here: https://detentiondata.herokuapp.com/
 - requirements.txt
 - Procfile
 
+## Use Cases
+
+## Requests
+
+## Bug Report
+
 ## Acknowledgements
 Thank you to Dr. David Beck and Anant Mittal from the University of Washington for their input and support on this project.
