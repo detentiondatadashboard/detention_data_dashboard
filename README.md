@@ -80,6 +80,7 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 
 Access the dashboard online here: https://detentiondata.herokuapp.com/
 
-## Dash app tutorial
+## Tutorials
 
-[to be added]
+Video tutorial on how to use use online dashboard: https://youtu.be/6wihXwGH7GE
+Video tutorial on how to pip install: https://youtu.be/fuL_vFVhTDs
