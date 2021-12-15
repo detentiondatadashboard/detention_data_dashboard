@@ -3,6 +3,7 @@ File containing relevant functions for generating figures.
 """
 
 import plotly.express as px
+import plotly.graph_objects as go
 
 def display_reg_plot(data_frame):
     """
@@ -26,8 +27,7 @@ def display_reg_plot(data_frame):
 
         return fig
 
-    else:
-        raise NameError('Please enter in a dataframe') 
+    raise NameError('Please enter in a dataframe')
 
 
 def display_aor_arrests_plot(data_frame):
@@ -50,5 +50,30 @@ def display_aor_arrests_plot(data_frame):
 
         return fig
 
-    else:
-        raise NameError('Please enter in a dataframe')
+    raise NameError('Please enter in a dataframe')
+
+def display_ice_detention_map(data_frame, color):
+    """
+    Generates plotly map of ice detention centers in the US
+
+    parameters:
+        data_frame: a pandas dataframe containing latitudes, longitudes, and addresses of the
+        ice detention centers in the us
+        color: a string with the color of the dots on the map
+    returns:
+        fig: a plotly map of ice detention centers in the US
+    """
+
+    fig = go.Figure(
+        data=go.Scattergeo(
+            lon = data_frame['long'],
+            lat = data_frame['lat'],
+            text = data_frame['address'],
+            mode = 'markers',
+            marker_color = color,
+            ))
+    fig.update_layout(
+        title = 'Ice Detention Centers',
+        geo_scope='usa',
+    )
+    return fig

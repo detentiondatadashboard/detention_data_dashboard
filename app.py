@@ -5,12 +5,8 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
 
-from detention_data_dashboard.data_download import data_download_reg, data_download_arrests_aor
-from detention_data_dashboard.figure import display_reg_plot, display_aor_arrests_plot
-
-df = px.data.election()
-geojson = px.data.election_geojson()
-candidates = df.winner.unique()
+from detention_data_dashboard.data_download import data_download_reg, data_download_arrests_aor, data_download_ice_detention
+from detention_data_dashboard.figure import display_reg_plot, display_aor_arrests_plot, display_ice_detention_map
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
@@ -25,6 +21,7 @@ loc_list = ["East Coast", "West Coast", "Southwest", "Midwest", "All"]
 aor_list = ['ATL', 'BAL', 'BOS', 'BUF', 'CHI', 'DAL', 'DEN', 'DET', 'ELP', 'HOU', 'HQ', 'LOS', 'MIA', 'NEW', 'NOL','NYC', 'PHI', 'PHO', 'SEA', 'SFR', 'SLC', 'SNA', 'SND', 'SPM', 'WAS']
 dataset_list = ['arrests', 'encounters', 'ice-facilities', 'removals']
 
+color_list = ['red', 'blue', 'green']
 app.layout = html.Div(
     children=[
         html.Div(
@@ -65,8 +62,15 @@ app.layout = html.Div(
                 ),
                 html.Div(
                     children=[dcc.Graph(
-                        id="choropleth", config={"displayModeBar": False},
+                        id="ice_detention", config={"displayModeBar": False},
                     ),
+                    dcc.RadioItems(
+                    id='color', 
+                    options=[{'value': x, 'label': x} 
+                            for x in color_list],
+                    value='blue',
+                    labelStyle={'display': 'inline-block'}),
+
                     html.Button("Download CSV", id="btn_csv"),
                     dcc.Download(id="download-dataframe-csv"),
                     html.Button("Download Image", id="btn_image"),
@@ -84,11 +88,12 @@ app.layout = html.Div(
                         id="fy_arrests",
                     ),
                     className="card",
-                ),
-            ],
-            className="wrapper",
-
-        ),
+                )],
+                
+            className="wrapper"),
+            
+        
+                
         html.Div(
             children = [
                 dcc.Dropdown(
@@ -109,16 +114,17 @@ app.layout = html.Div(
     ]
 )
 @app.callback(
-    Output("choropleth", "figure"), 
-    [Input("candidate", "value")])
+    Output("ice_detention", "figure"),
+    Input("color", "value"))
 
-def display_choropleth(candidate):
-    fig = px.choropleth(
-        df, geojson=geojson, color=candidate,
-        locations="district", featureidkey="properties.district",
-        projection="mercator", range_color=[0, 6500])
-    fig.update_geos(fitbounds="locations", visible=False)
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+def return_ice_detention_fig(value): 
+    """
+    pieces of code taken from https://www.kaggle.com/pavansanagapati/interactive-choropleth-point-maps-using-plotly?scriptVersionId=36440837&cellId=19
+    """
+    df = data_download_ice_detention()
+    #lat = df['latitude']
+    #ong_ = df['longitude']
+    fig = display_ice_detention_map(df, value)
 
     return fig
 
@@ -144,8 +150,8 @@ def func(n_clicks):
     Output("fy_arrests", "figure"),
     [Input("us_loc", "value")])
 
-def return_arrest_aor_plot(aor):
-    df = data_download_arrests_aor(aor)
+def return_arrest_aor_plot(value):
+    df = data_download_arrests_aor(value)
     fig = display_aor_arrests_plot(df)
 
     return fig
