@@ -52,22 +52,21 @@ Datasets include variables on detention facilities, law enforcement, and bond ra
 │   ├── data_download.py
 │   ├── figure.py
 │   └── tests
-│       ├── __init__.py
-│       ├── __pycache__
-│       │   ├── __init__.cpython-38.pyc
-│       │   ├── test_data_download.cpython-38.pyc
-│       │   └── test_figure.cpython-38.pyc
-│       ├── test_data_download.py
-│       ├── test_figure.py
-│       └── test_images
+│       ├── __init__.py
+│       ├── __pycache__
+│       │   ├── __init__.cpython-38.pyc
+│       │   ├── test_data_download.cpython-38.pyc
+│       │   └── test_figure.cpython-38.pyc
+│       ├── test_data_download.py
+│       ├── test_figure.py
+│       └── test_images
 ├── doc
-│   ├── Final\ Presentation.pdf
 │   ├── Final_Presentation.pdf
 │   ├── README.md
 │   ├── software_design.md
 │   └── tech_reviews
-│       ├── Tech\ Review\ -\ Web\ Development\ Apps\ for\ Python.txt
-│       └── Technology\ Review\ -\ Dashboards\ in\ Python.pptx
+│       ├── Tech_Review_Web_Development_Apps_for_Python.txt
+│       └── Technology_Review_Dashboards_in_Python.pptx
 ├── environment.yml
 ├── requirements.txt
 ├── runtime.txt
